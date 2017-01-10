@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    //Feature Set 1
+    var x = null,
+        y,
+        z = "fudge";
+    
+    //Feature Set 2
+    var output1,
+        output2,
+        output3;
+    
+    output1 = x > y;
+    console.log("My output1", output1);
+    
+    output2 = y != z;
+    console.log("My output2", output2);
+    
+    output3 = y > z;
+    console.log("My output3", output3);
+    
+    //Feature Set 3
+    var output4,
+        output5,
+        output6;
+    
+    output4 = "x is " + aOrAn(x);
+    console.log(output4);
+    
+    output5 = "y is " + aOrAn(y);
+    console.log(output5);
+    
+    output6 = "z is " + aOrAn(z);
+    console.log(output6);
+    
+    function aOrAn(typeChecking) {
+      //I realize now that I should have set a variable for typeof(typeChecking) and typeof(typeChecking) + "". Oops. I don't wanna break it. I'm leaving it.
+      if(typeof(typeChecking) == "undefined") {
+        return "undefined";
+      } else if((typeof(typeChecking) + "")[0] == "a" ||
+          (typeof(typeChecking) + "")[0] == "e" ||
+          (typeof(typeChecking) + "")[0] == "i" ||
+          (typeof(typeChecking) + "")[0] == "o" ||
+          (typeof(typeChecking) + "")[0] == "u") {
+        return "an " + typeof(typeChecking);
+      } else {
+          return "a " + typeof(typeChecking);
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
