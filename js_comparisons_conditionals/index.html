@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    //Feature Set 1
+    var mySmallNumber = 5,
+        myString = "5",
+        myBigNumber = 255;
+    
+    //Feature Set 2
+    var output1,
+        output2,
+        output3,
+        output4;
+    
+    output1 = mySmallNumber == myString;
+    console.log("My output1 =", output1);
+    
+    output2 = mySmallNumber === myString;
+    console.log("My output2 =", output2);
+    
+    output3 = mySmallNumber < myBigNumber;
+    console.log("My output3 =", output3);
+    
+    output4 = mySmallNumber > myBigNumber;
+    console.log("My output4 =", output4);
+    
+    //Feature Set 3
+    var gameNumber = 64;
+    var userInput1 = 89;
+    var userInput2 = 64;
+    
+    //Feature Set 4
+    if (userInput1 > gameNumber) {
+      console.log("The number was TOO HIGH!");
+    } else if (userInput1 < gameNumber) {
+      console.log("The number was TOO LOW!");
+    }
+    
+    if (userInput1 < 1 || userInput1 > 100) {
+      console.log("The number was OUT OF RANGE!");
+    } else {
+      console.log("The number was IN RANGE!");
+    }
+    
+    if (userInput2 === gameNumber) {
+      console.log("The correct number has been guessed!")
+    } else {
+      console.log("Try again!");
+    }
+    
+    //Feature Set 5
+    switch(true) {
+      case gameNumber == userInput1:
+        console.log("You found the correct number!");
+        break;
+      case userInput1 < gameNumber &&  gameNumber - 10 <= userInput1:
+        console.log("Too low but cold.");
+        break;
+      case userInput1 > gameNumber &&  gameNumber + 10 >= userInput1:
+        console.log("Too high but warm.");
+        break;
+      case userInput1 < gameNumber &&  gameNumber - 25 <= userInput1:
+        console.log("Too low and cold");
+        break;
+      case userInput1 > gameNumber &&  gameNumber + 25 >= userInput1:
+        console.log("Too high and cold");
+        break;
+      default:
+        console.log("You are way off...");
+    }
+    
+    
+    /*
+ 
+    //For testing purposes
+    var edgeCases = [38, 39, 63, 64, 65, 74, 75, 89, 90];
+    
+    for (var i = 0; i < edgeCases.length; i++) {
+      console.log("For " + edgeCases[i]);
+      switchChecker(edgeCases[i], gameNumber);
+      console.log("");
+    }
+    
+    function switchChecker(userInput1, gameNumber) {
+      switch(true) {
+        case gameNumber == userInput1:
+          console.log("You found the correct number!");
+          break;
+        case userInput1 < gameNumber &&  gameNumber - 10 <= userInput1:
+          console.log("Too low but cold.");
+          break;
+        case userInput1 > gameNumber &&  gameNumber + 10 >= userInput1:
+          console.log("Too high but warm.");
+          break;
+        case userInput1 < gameNumber &&  gameNumber - 25 <= userInput1:
+          console.log("Too low and cold");
+          break;
+        case userInput1 > gameNumber &&  gameNumber + 25 >= userInput1:
+          console.log("Too high and cold");
+          break;
+        default:
+          console.log("You are way off...");
+      }
+    }
+    
+    */
+    
+  </script>
+</head>
+<body>
+
+</body>
+</html>
