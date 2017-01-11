@@ -14,12 +14,13 @@
             //Here are some examples using jQuery
             //.addClass is used to add a class to any element
             //here we are targeting the div1 element
-            $("#div1").addClass("red"); //change the word red to pink *note these classes have already been created in the CSS file
+            $("#div1").addClass("pink"); //change the word red to pink *note these classes have already been created in the CSS file
 
             //.click is like using the onclick attribute we used before
             //It creates an event handler for when div1 is clicked
             $("#div1").click(function(){
-                console.log("You clicked div 1, It is red"); //Fix the output to reflect div1's new color
+                count++;
+                console.log("You clicked div 1, It is pink \n Times Clicked: " + count + "!"); //Fix the output to reflect div1's new color
 
             });
 
@@ -31,13 +32,35 @@
                 if($("#div2").hasClass("green")){
                     //If it has the class "green" then it will output "I am Green!"
                     console.log("I am Green!");
+                    
+                    //Doing this in vanilla javascript//
+                    document.querySelector("#div2").textContent = "I am Green!";
                 }else{
                     //else it does not have the class "green" then it will output "I am White!"
                     console.log("I am White!");
+                    
+                    //Doing this in jQuery//
+                    $("#div2").text("I am White!");
                 }
             });
             //----Write your code bellow----//
-
+            //Gonna use this for vanilla javascript only//
+            var div3Selector = document.querySelector("#div3");
+            
+            div3Selector.className = "card-back";
+            
+            div3Selector.addEventListener("click", function() {classToggler(div3Selector)});
+            
+            function classToggler(selectedElement) {
+              selectedElement.className == "card-back" ? selectedElement.className += " flag" : selectedElement.className = "card-back";
+            }
+            
+            //Gonna use this for jQuery only//
+            $("#div4").addClass("card-back");
+            $("#div4").click(function() {
+              $(this).toggleClass("path");
+            });
+            
 
 
             //----Write your code above----//
