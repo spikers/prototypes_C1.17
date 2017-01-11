@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function clickLogger(tagName) {
+      console.log("The " + tagName + " has been clicked!");
+      event.stopPropagation();
+    }
+    
+    function hoverLogger(tagName) {
+      console.log("You hovered over my " + tagName + " element!");
+      event.stopPropagation();
+    }
+    
+    function loadLogger(tagName) {
+      console.log("The " + tagName + "has been loaded!");
+      event.stopPropagation();
+    }
+  </script>
+</head>
+<body onload="loadLogger('body')" onclick="clickLogger('body')">
+  <button onclick="clickLogger('button')">Click Me!</button>
+  <h1 onclick="clickLogger('header')">My Header! Click me too!</h1>
+  <h2 onmouseover="hoverLogger('h2')">My Header! Hover over me!</h2>
+  <p>This is my <em onclick="clickLogger('word &#34;Short&#34;')">short</em> sentence.</p>
+</body>
+</html>
