@@ -44,10 +44,46 @@
             $("#playground1").html("<h1>I am a heading</h1><p>This is an awesome paragraph</p><p style='color:red'>This has red text</p>");
 
             //playground 2 code
-            //Sorry I'm not quite sure what the objective is. I'm just doing exactly what you've done, but generating it using jQuery
-            $("#playground2").html("<div class='awesome_class'>Here is some awesome div text</div><div class='awesome_class' id='my_awesome_div2'>Here is MORE awesome div text</div><div class='awesome_class' id='my_awesome_div3' data-coolness='high'>Here is <strong>EVEN MORE</strong> awesome div text</div>")
+            $("#playground2").html("<div class='awesome_class'>Here is some awesome div text</div><div class='awesome_class' id='my_awesome_div2'>Here is MORE awesome div text</div><div class='awesome_class' id='my_awesome_div3' data-coolness='high'>Here is <strong>EVEN MORE</strong> awesome div text</div>");
 
             //playground 3 code
+            //Gonna do this the long... long... long... way
+            var pg3 = document.querySelector("#playground3");
+            var neato = document.createElement("ul"),
+                awesome_picture_container = document.createElement("figure"),
+                awesome_img = document.createElement("img"),
+                awesome_img_caption = document.createElement("figcaption"),
+                bold_text = document.createElement("span");
+            
+            /*Oh good lord, that took forever. Times I've shot myself in foot this method:
+            0: I'm good!
+            1: Okay I don't really think the variables are named well... Makes things mixed up
+            2: There's a lot of nested elements. It's gonna be a lot of code spaghetti weaving all the nodes together.  And actually, I'm not sure if the for loop works, until AFTER I'm done writing it. Lots of code spaghetti, but no copy pasta.
+            3: Lots of code accounting. It's unfortunate that it's hard to visually discern if it's correct. Making one element spans over 2 or 3 lines. Adding a class adds another line.
+            4: That figcaption has a nested span. This is gonna be very hacky...
+            5: It's very unfortunate that you need to basically finish the entire code block before being able to test it. You can only test the inside if you append it to the grandparent element (skipping the middle). For heavily nested stuff, it's just very frustrating...
+            
+            I had to write 9 lines in a row hoping it was right. It was, thankfully...
+            I think this is a hilariously bad implementation though. I think it's good for heavily structured data, but not stuff like this...
+            This solution is 25-ish lines. As opposed to <10 lines it was for the previous solutions.  
+            */
+            neato.className = "neato";
+            for (var i = 1; i <= 3; i++) {
+              var listItem = document.createElement("li");
+              listItem.textContent = "Link " + i;
+              neato.appendChild(listItem);
+            }
+            pg3.appendChild(neato);
+            
+            awesome_picture_container.className = "awesome_picture";
+            awesome_img.src = "http://comerecommended.com/wp-content/uploads/2013/01/how-to-get-awesome-back.jpg";
+            awesome_picture_container.appendChild(awesome_img);
+            awesome_img_caption.textContent = "That's right, ";
+            bold_text.className = "bold_text";
+            bold_text.textContent = "you are";
+            awesome_img_caption.appendChild(bold_text);
+            awesome_picture_container.appendChild(awesome_img_caption);
+            pg3.appendChild(awesome_picture_container);
         });
     </script>
 </head>
