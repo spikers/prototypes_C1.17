@@ -2,19 +2,147 @@
 <html>
 <head>
   <script>
+    //Feature Set 1
     var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     
-    loopThroughArray(numbers, logItem);
+    logArray(numbers);
+
+    function logArray(arr) {
+      loopThroughArray(arr, logItem);
+    }
     
     function loopThroughArray(arr, func) {
       for (var i = 0; i < arr.length; i++) {
         func(arr[i]);
       }
+      console.log("");
     }
     
     function logItem(item) {
       console.log(item);
     }
+
+    logArray(arrayReverser(numbers));
+    
+    //I did it this way because I realized array.reverse was destructive.
+    function arrayReverser(arr) {
+      var tempArray = [];
+      for (var i = 0; i < arr.length; i++) {
+        tempArray[i] = arr[arr.length-1-i];
+      }
+      return tempArray;
+    }
+
+    logArray(extractOddNumbers(numbers));
+    
+    function extractOddNumbers(arr) {
+      var tempArray = [],
+          counter = 0;
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 !== 0) {
+          tempArray[counter] = arr[i];
+          counter++
+        }
+      }
+      return tempArray;
+    }
+    
+    var mixedArray = [4, 56, 11, 13, 97, 22, 7, 36, 19, 5, 8, 10];
+    logArray(extractOddNumbers(mixedArray));
+    
+    //Feature Set 2: PLEASE GO TO LINE 98 FOR FOR-IN SOLUTION
+    var classRoom = {desk1: 'Stu', desk2: 'Peggy', desk3: 'LoneStar', desk4: 'George', desk5: 'Sheldon'};
+    var actionString = " is at ";
+    
+    loopItAllTogether(classRoom);
+    
+    function loopItAllTogether(obj) {
+      console.log(obj);
+      var key0Value1 = theRipper(obj);
+      console.log(key0Value1);
+      for (let i = 0; i < Object.keys(obj).length; i++) {
+        //Remember the order is Stu is at Desk1, so [1] then [0]
+        var solutionString = stringCombiner(key0Value1[1][i], actionString, key0Value1[0][i]);
+        console.log(solutionString);
+      }
+      console.log("");
+    }
+    
+    function theRipper(objectToSplit) {
+      var tempArr;
+      var objKeys = Object.keys(objectToSplit);
+      var objValues = [];
+      
+      objValues = extractObjectValues(objectToSplit, objKeys);
+      
+      tempArr = [objKeys, objValues];
+      return tempArr;
+    }
+    
+    function extractObjectValues(obj, objKeys) {
+      var objValues = [];
+      for (var i = 0; i < objKeys.length; i++) {
+        objValues[i] = obj[objKeys[i]];
+      }
+      return objValues
+    }
+    
+    function stringCombiner() {
+      var concatenatedString = '';
+      for (var i = 0; i < arguments.length; i++) {
+        concatenatedString += arguments[i]
+      }
+      return concatenatedString;
+    }
+    
+    //Feature Set 2 Solution, I forgot to make a for-in loop
+    for (desks in classRoom) {
+      console.log(classRoom[desks] + " is at " + desks);
+    }
+    
+    //Feature Set 3
+    var studentArray = [{name: "Bob", grade: 87}, {name: "Fred", grade: 82}, {name: "George", grade: 93}, {name: "Robert", grade: 85}];
+
+    String.prototype.toTitleCase = function() {
+      return this.charAt(0).toUpperCase() + this.slice(1);
+    }
+    
+    var nameToFind = "Fred";
+    
+    findStudent(nameToFind);
+    
+    function findStudent(studentName) {
+      console.log(studentName);
+      studentArray[findStudentIndex(studentName)] ? formatResults(studentArray[findStudentIndex(studentName)]) : failedResults(studentName);
+    }
+    
+    function findStudentIndex(studentName) {
+      studentName = studentName.toTitleCase();
+      var counter = 0,
+          foundKid = false;
+      while (foundKid == false && counter < studentArray.length) {
+        if (studentArray[counter].name == studentName) {
+          return counter;
+        }
+        
+        counter++
+      }
+      return -1;
+    }
+    
+    function formatResults(studentObject) {
+        console.log("Found " + studentObject.name + ", grade is: " + studentObject.grade + ".");
+    }
+    
+    function failedResults(failedName) {
+      failedName.toTitleCase();
+      console.log("Student " + failedName + " not found.");
+    }
+
+    //List of names... Yay it works!
+    var nameList = ["Bob", "Bill", "Joe", "Fred", "Robert", "Hank", "George"];
+    console.log(nameList);
+    loopThroughArray(nameList, findStudent);
   </script>
 </head>
 <body>
