@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    //Feature Set 1.0
+    var student_array = ["Tim", "Michael", "George", "Charles", "Gwen"];
+    console.log(student_array[3-1]);
+
+    //Feature Set 1.1
+    console.log(student_array);
+    console.log(student_array.length);
+    student_array.push("Joe", "Zorah");
+    console.log(student_array);
+
+    //Feature Set 2.0
+    var student = {};
+    student.firstName = "Tim";
+    student.lastName = "Feng";
+    student.age = "105";
+    student.school = "LearningFuze";
+    student.questionList = [];
+    student.hasQuestion = false;
+
+    //Feature Set 2.1
+    student.greeting = function() {
+        return "Hello, my first name is " + this.firstName;
+    };
+    
+    student.aboutMe = function() {
+        return "My full name is " + this.firstName + " " + this.lastName + ", I am " + this.age + " years old and I am a student at " + this.school + ".";
+    };
+
+    student.askQuestion = function(question) {
+        this.questionList.push(question);
+        this.hasQuestion = true;
+        return "A question has been added to your list!";
+    };
+
+    student.answerQuestion = function() {
+        if (this.hasQuestion) {
+            this.hasQuestion = false;
+            return this.questionList[this.questionList.length-1];
+        } else if (this.hasQuestion == false) {
+            return "You have no pending questions.";
+        } else {
+            console.log("Not sure what's going on here...");
+            return "NO IDEA"
+        }
+    }
+
+    //Feature Set 2.2
+
+    logger("Greeting: " + student.greeting());
+    logger("About Me: " + student.aboutMe());
+    logger("Answer Question: " + student.answerQuestion());
+    logger("Ask Question 1: " + student.askQuestion("How are you?"));
+    logger("Ask Question 2: " + student.askQuestion("How yo kids?"));
+    logger("Ask Question 3: " + student.askQuestion("Starter Pokemon?"));
+    logger("Answer Question: " + student.answerQuestion());
+    logger("Questions List: " + student.questionList);
+
+
+    function logger() {
+        for (var i = 0; i < arguments.length; i++) {
+            console.log(arguments[i]);
+        }
+    }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
