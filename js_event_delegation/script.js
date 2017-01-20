@@ -18,15 +18,15 @@
 
         //Feature Set 1
         $("#list button").on("click", function() {
-            console.log("Feature Set 1 Clicked!");
+            console.log("Feature Set 1:", $(this).text());
         });
 
         //Feature Set 2
         $("#list").append($("<li><button style='margin: 10px'>Delegated Button #5</button></li>"));
 
         // //Feature Set 3
-        $("#list").on("click", function() {
-            $(this).find("button").text();
+        $("#list").on("click", "button", function() {
+            console.log("Feature Set 3:", $(this).text());
         });
 
         //Additional Challenge
