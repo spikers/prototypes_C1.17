@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+  /*Feature Set 1*/
+    function coin_stack(initial_amount) {
+        this.value = initial_amount;
+        this.get_value = function() {
+            return "I have " + this.value + " coins in my coin stack"; 
+        };
+
+        this.add_coins = function(coins_to_add) {
+            this.value += coins_to_add;
+        };
+
+        this.remove_coins = function(coins_to_remove) {
+            coins_to_remove < this.value ? (this.value -= coins_to_remove) : (coins_to_remove = this.value, this.value = 0);
+            return coins_to_remove;
+        };
+    }
+    /*Feature Set 2*/
+
+    var my_coin_stack = new coin_stack(50);
+    console.log("my_coin_stack contains " + my_coin_stack.value + " coins");
+    my_coin_stack.add_coins(15);
+    console.log("add_coins Method: " + my_coin_stack.value);
+    console.log("3a: " + my_coin_stack.get_value());
+    my_coin_stack.remove_coins(37);
+    console.log("3b: " + my_coin_stack.get_value());
+    my_coin_stack.remove_coins(55);
+    console.log("3c: " + my_coin_stack.get_value());
+
+    /*Feature Set 3*/
+    coin_stack.prototype.transfer_coins = function(coins_from, transfer_amount) {
+        transfer_amount = coins_from.remove_coins(transfer_amount);
+        this.add_coins(transfer_amount);
+    };
+
+    var erics_coins = new coin_stack(50);
+    var dans_coins = new coin_stack(50);
+    erics_coins.transfer_coins(dans_coins, 30);
+    console.log("Eric's Coins-30: ", erics_coins);
+    console.log("Dan's Coins-30: ", dans_coins);
+
+    dans_coins.transfer_coins(erics_coins, 120);
+    console.log("Eric's Coins-120: ", erics_coins);
+    console.log("Dan's Coins-120: ", dans_coins);
+  </script>
+</head>
+<body>
+  <h1>Javascript OOP Prototype</h1>
+</body>
+</html>
