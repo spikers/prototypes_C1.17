@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function ajaxCall() {
+      var checkbox = document.querySelector('input[value=howdy]');
+
+      var data = new FormData();
+      var textarea = document.querySelector("textarea").value;
+      data.append("textarea", textarea);
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('load', function() {
+        console.log(this.responseText);
+      });
+
+      xhr.open("post", "index.php" + "?" + "textarea=" + textarea);
+      xhr.setRequestHeader("get", textarea);
+
+      xhr.send(data);
+    }
+  </script>
+</head>
+<body>
+  <form action="">
+    <input type="checkbox" value="howdy">
+    <textarea></textarea>
+    <button type="button" onclick = "ajaxCall()">Click Me!</button>
+  </form>
+</body>
+</html>
