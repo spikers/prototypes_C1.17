@@ -3,11 +3,12 @@
 <head>
   <script>
     function ajaxCall() {
-      var checkbox = document.querySelector('input[value=howdy]');
+      var checkbox = document.querySelector('input[value=howdy]').checked;
+      var textarea = document.querySelector("textarea").value;
 
       var data = new FormData();
-      var textarea = document.querySelector("textarea").value;
       data.append("textarea", textarea);
+      data.append("checkbox", checkbox);
 
       var xhr = new XMLHttpRequest();
 
