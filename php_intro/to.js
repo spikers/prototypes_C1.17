@@ -1,16 +1,14 @@
 //EXERCISE 1
+
+
 var variable1 = 'hello';
 var variable2 = 4;
 var variable3 = ['foo', 'bar'];
-
-console.log(variable1, variable2, variable3);
 
 //EXERCISE 2
 
 var variable1 = 4;
 var variable1 = 'hello';
-
-console.log(variable1);
 
 //EXERCISE 3
 
@@ -30,9 +28,9 @@ console.log('This is a string' + 'This is another string');
 //EXERCISE 5
 
 var my_float = 3.5;
-var my_int = my_float;
+var my_int = parseInt(my_float);
 var my_float2 = 5.3;
-var my_int2 = my_float2;
+var my_int2 = parseInt(my_float2);
 
 //EXERCISE 6
 
@@ -69,7 +67,7 @@ var student = {'name':'Skippy', 'class':'English', 'grade':75};
 
 //EXERCISE 9
 
-var student = {};
+var student = function() {};
 student.name = 'Skippy';
 student.class = 'English';
 student.grade = 75;
@@ -79,7 +77,6 @@ student.grade = 75;
 var num_array = [35, 2, 14, 56, 65, 52];
 
 function find_greatest_num_and_index(direction) {
-    num_array;
 
     greatest = null;
     greatest_index = null;
