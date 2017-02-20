@@ -1,9 +1,7 @@
 let http = require('http');
 let path = require('path');
 let fs = require('fs');
-let Magic = require('mmmagic').Magic;
 
-let magic = new Magic();
 let server = http.createServer();
 
 server.on('request', serverListen);
@@ -24,16 +22,35 @@ function serverListen(request, response) {
   let file = (request.url === "/") ? (__dirname + '/index.html') : (__dirname + request.url);
   //let extension = path.extname(request.url);
   //console.log(extension);
-  console.log(file);
-  let readstream = fs.createReadStream(file);
+  //console.log(file);
+  //let readstream = fs.createReadStream(file);
+  let type = mime[path.extname(file).slice(1)] || 'text/plain';
+  //console.log(type);
 
-  var type = mime[path.extname(file).slice(1)] || 'text/plain';
-  console.log(type);
+  // readstream.on('open', () => {
+  //   response.writeHead(200, {'Content-Type': type});
+  //   readstream.pipe(response);
+  // });
 
-  readstream.on('open', () => {
-    response.setHeader('Content-Type', type)
-    readstream.pipe(response);
+  fs.readFile(file, function(err, data) {
+    if (err) {
+      fs.readFile(__dirname + '/404.html', 'utf-8', (err, data) => {
+        response.writeHead(404, {'Content-Type': 'text/html'});
+        response.end(data);
+      });
+    } else {
+      response.statusCode = 200;
+      response.setHeader('Content-Type', type)
+      response.end(data);
+    }
   });
+
+  // readstream.on('error', () => {
+  //   response.writeHead(200, {'Content-Type': 'text/html'});
+  //   fs.readFile(__dirname + '/404.html', (e, data) => {
+  //     response.end(data);
+  //   });
+  // });
 
   // readstream.on('end', () => {
   //   //response.end(readstream.read());
