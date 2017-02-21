@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <title>Angular Intro</title>
     <!-- Add Angular CDN below -->
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </head>
-<body>
+<body ng-app>
+  <div ng-init="myVar='Yay String!'">
+    <!-- Feature Set 1 -->
+    {{ myVar }}
+    
+    <!-- Feature Set 2 -->
+    <div ng-init="carArray=['BMW', 'Honda', 'Audi', 'Toyota']">
+      <ul ng-repeat="cars in carArray">
+        <li>{{ cars }}</li>
+      </ul>
+    </div>
 
+    <!-- Feature Set 3-->
+    <input ng-model="myInput">
+    <p> {{ myInput }} </p>
+  </div>
+  
 </body>
 </html>
