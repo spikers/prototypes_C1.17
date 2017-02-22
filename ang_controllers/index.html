@@ -4,9 +4,75 @@
     <meta charset="UTF-8">
     <title>Angular Controllers</title>
     <!-- Add the AngularJS CDN below -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="controllerApp">
+  <div ng-controller="formController as fc" ng-keydown="fc.keyEvents($event)">
+    <input type='text' ng-model='fc.form.fName'><br>
+    <input type='text' ng-model='fc.form.lName'><br>
+    <input type='text' ng-model='fc.form.email'><br>
+    <textarea ng-model='fc.form.comments' ng-change="fc.numbersLeft()" ng-disabled="fc.numbersLeft()" ng-keydown="fc.keyEvents($event)"></textarea><br>
+    <p>Characters Remaining: {{ fc.charsLeft }} </p>
+    <button ng-click="fc.addFormToArray()">Add Students</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Comments</th>
+        </tr>
+      <thead>
+      <tbody>
+        <tr ng-repeat="students in fc.formArray">
+          <td> {{ students.fName + " " + students.lName }}</td>
+          <td> {{ students.email }}</td>
+          <td> {{ students.comments }}</td>
+      </tbody>
+  </div>
+<script>
+  var app = angular.module('controllerApp', []);
 
+  app.controller('formController', function ($log) {
+    var self = this;
+
+    this.maxComment = 15;
+    this.form = {};
+    this.formArray = [];
+    this.charsLeft = this.maxComment;
+
+    this.form.comments = "";
+    this.form.comments.length = 0;
+
+    document.querySelector('input').focus();
+
+    this.addFormToArray = function () {
+      self.formArray.push(this.form);
+      self.numbersLeft();
+      self.form = {};
+      self.form.comments = "";
+      self.form.comments.length = 0;
+    }
+
+    this.numbersLeft = function () {
+      self.charsLeft = self.maxComment - self.form.comments.length;
+      if (self.charsLeft > 0) {
+        return false;
+      } else {
+        self.form.comments.disable
+        return true;
+      }
+    }
+
+    this.keyEvents = function (event) {
+      switch (event.key) {
+        case ('Enter'):
+          self.addFormToArray();
+          break;
+      }
+    }
+
+
+  });
+</script>
 </body>
 </html>
