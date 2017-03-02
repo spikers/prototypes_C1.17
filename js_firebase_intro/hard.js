@@ -1,4 +1,4 @@
-// harder Firbase Intro Prototype js file
+// harder Firebase Intro Prototype js file
 
 function updateDom(d){
     var table = $('.sgt tbody');
