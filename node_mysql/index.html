@@ -7,5 +7,17 @@
 <!-- 
 create your ajax request to getData.js.  Remember it is on your node server, so make sure the request is going to the appropriate port.  Then present the json data into your page 
 -->
+<p id='fudge'>Hey what's up?</p>
+
+<script>
+let xhr = new XMLHttpRequest();
+xhr.addEventListener('load', function(res) {
+  console.log(res.target.response);
+  var fudge = document.getElementById('fudge');
+  fudge.innerText = JSON.stringify(res.target.response);
+});
+xhr.open('get', '/api');
+xhr.send();
+</script>
 </body>
 </html>
