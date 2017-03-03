@@ -20,6 +20,8 @@ students.on('value', function(snapshot) {
 window.addEventListener('load', function() {
     var addStudentButton = document.getElementById('add-student');
     addStudentButton.addEventListener('click', handleAddButtonClick)
+
+
     //var deleteStudentBUtton = document.getElementById('')
     var clearButton = document.getElementById('clear-form');
     clearButton.addEventListener('click', clearForm);
@@ -27,14 +29,13 @@ window.addEventListener('load', function() {
 
 function handleAddButtonClick() {
     //students.push(formInfo);
+    if (document.getElementById('add-student').classList[1] !== 'btn-success') return;
     var newStudent = {};
 
     newStudent = getFormattedFormData();
     students.push(newStudent);
 
     clearForm();
-    console.log(newStudent);
-
 } 
 
 function getFormattedFormData() {
@@ -69,6 +70,7 @@ function updateDom(d){
             });
 
             var closureKey = key;
+            var closured = d;
 
             del.on('click', () => {
                 dbRef.ref('Students/' + closureKey).remove();
@@ -76,13 +78,16 @@ function updateDom(d){
             });
 
             edit.on('click', () => {
-                var updates = {};
-                var formData = getFormattedFormData();
-                updates['Students/' + closureKey] = formData;
-                dbRef.ref().update(updates);
-                clearForm();
+                $('#add-student').removeClass('btn-success').addClass('btn-info').text('Update Student');
+                populateFormData(closured[closureKey].student_id, closured[closureKey].student_name, closured[closureKey].course, closured[closureKey].grade);
+                $('#add-student').on('click', () => {
+                    var updates = {};
+                    updates["Students/" + closureKey] = getFormattedFormData();
+                    dbRef.ref().update(updates);
+                    $('#add-student').removeClass('btn-info').addClass('btn-success').text('Add Student');
+                    clearForm();
+                })
             });
-
             table.append(row.append(id, name, course, grade, actions.append(edit, del)));
         }());
         }
