@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS - Regular Expressions</title>
+  <script type="text/javascript">
+    //Feature Set 1
+    console.log("Feature Set 1");
+    let fs1aString = 'Hello';
+    let fs1a = new RegExp('e');
+    console.log('FS1A', fs1aString.match(fs1a));
+
+    let fs1bString = 'HE entEred';
+    let fs1b = new RegExp('e', 'gi');
+    console.log('FS1B', fs1bString.match(fs1b));
+
+    let fs1cString = ['stir the star', 'stim the stat', 'stir the stat', 'stim the star'];
+    let fs1c = /st[ia]r/g;
+    console.log('FS1C', fs1cString[0].match(fs1c));
+    console.log('FS1C', fs1cString[1].match(fs1c));
+    console.log('FS1C', fs1cString[2].match(fs1c));
+    console.log('FS1C', fs1cString[3].match(fs1c));
+
+
+    //Feature Set 2
+    console.log('\nFeature Set 2');
+    let phoneNumber = /^1?[- ]*\(?\d{3}\)?[- ]*\d{3}[- ]*\d{4}$/;
+    let phoneStrings = [
+      '818 555 1212',
+      '818-555-1212',
+      '1818 555 1212',
+      '1818-555-1212',
+      '1 818 555 1212',
+      '1-818-555-1212',
+      '(818) 555-1212',
+      '8185551212',
+      '818      555      1212',
+      '818 555-1212',
+      '18185551212'
+    ]
+
+    let solutionCheck = phoneStrings.map((item) => {
+      return item.match(phoneNumber)[0];
+    });
+
+    console.log(solutionCheck);
+
+
+    let redHerrings = [
+      '818555121',
+      '818?5551212',
+      '8185-55-1212',
+      '555-1212',
+      'eight one eight, five five five, one two one two'
+    ]
+
+    let redHerringCheck = redHerrings.map((item) => {
+      return item.match(phoneNumber);
+    });
+
+    console.log(redHerringCheck);
+
+    console.log('\nFeature Set 3');
+    /*
+    Okay, I brute forced the hell out of this. This is 4 orders:
+    1) A2a (so, AA2A33a counts here) 
+    2) Aa2 (so, AAaAaa3 counts here)
+    3) a2A
+    4) aA2
+    This accounts for all 4 of those cases.
+    */
+    let passwordRegex = /(^[A-Z]+(?=([a-z]+(?=[a-zA-Z]*\d)))|^[A-Z]+(?=(\d+(?=[A-Z\d]*[a-z])))|^[a-z]+(?=([A-Z]+(?=[a-zA-Z]*\d)))|^[a-z]+(?=(\d+(?=[a-z\d]*[A-Z]))))[a-zA-Z0-9]{5,31}$/;
+
+    let password = [
+      'helloDude3',
+      'Pa5sWoRd',
+      'thisIsaReallyL0NGpassword'
+    ];
+
+    let badPassword = [
+      'short',
+      'nocapsbutanumber1',
+      '5tartsWithANumber',
+      'ALLCAPSBUT4NUMBER',
+      'toDamnManyLettersForThisToBeAValidP4sswordYouKnowIt',
+      'ill#g@l_characters'
+    ];
+
+    let passwordChecker = password.map((item) => {
+      try {
+        return item.match(passwordRegex)[0];
+      } catch (e) {
+        return false;
+      }
+    });
+    console.log('Good passwords:', passwordChecker);
+
+    let badPasswordChecker = badPassword.map((item) => {
+      try {
+        return item.match(passwordRegex)[0];
+      } catch (e) {
+        return false;
+      }
+    });
+    console.log('Bad Passwords:', badPasswordChecker);
+
+
+
+  </script>
+</head>
+<body>
+  <h1>Javascript - Regular Expressions</h1>
+</body>
+</html>
